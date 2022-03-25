@@ -1,4 +1,8 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 import Clock from "./Clock";
 import FlipIcon from "./FlipIcon";
@@ -13,10 +17,12 @@ function SNav(props){
     const [ sideMenu, setSideMenu ] = useState(false);
     const [ isShowAreas, setIsShowAreas ] = useState(false);
 
-    const areasRef = useRef(null);
+    const navigator = useNavigate();
 
     // destructing props
     const { authed, setAuthed } = props;
+
+    // console.log(history);
 
     const showAreas = ()=>{
         setIsShowAreas(!isShowAreas);
@@ -39,6 +45,12 @@ function SNav(props){
 
     return(
         <nav className="s-nav">
+            {/* <span onClick={()=>navigator(-1)}>
+                goback
+            </span> */}
+            {authed && (
+                <FontAwesomeIcon className="icon-left-angle" icon={faAngleLeft} onClick={()=> navigator(-1)} />
+            )}
             <span className="nav-title">
                 City Security System
                 <Clock />
@@ -47,7 +59,7 @@ function SNav(props){
                 <>
                     <AreasMenu {...{isShowAreas, showAreas}} />
                     <FlipIcon {...{flipped, onFlipIconClick}} />
-                    <SideMenu {...{sideMenu}} />
+                    <SideMenu {...{sideMenu, setAuthed}} />
                 </>
             )}
         </nav>

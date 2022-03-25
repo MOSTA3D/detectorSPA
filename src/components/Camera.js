@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import { AppContext } from "./App"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleLeft, faBackward } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +9,9 @@ import { faAngleDoubleLeft, faBackward } from '@fortawesome/free-solid-svg-icons
 function Camera(props){
     const [ isSideMenu, setIsSideMenu ] = useState(false);
 
+    const { id } = useParams();
+
+    // handlers
     const onSlideIconClick = (_e)=>{
         setIsSideMenu(!isSideMenu);
     }
@@ -13,9 +19,8 @@ function Camera(props){
     return (
         <div className="camera">
             <main className="camera-main">
-                {/* <img src= "https://wallpaperaccess.com/full/1165754.jpg" alt="image" /> */}
                 <main>
-
+                    <img src= "https://wallpaperaccess.com/full/1165754.jpg" alt="image" />
                 </main>
                 <aside>
 
@@ -28,7 +33,7 @@ function Camera(props){
                     <hr />
                     <br />
                     <ul>
-                        <li>somthig</li>
+                        <li>somthing</li>
                         <li>went</li>
                         <li>wrong</li>
                     </ul>
@@ -45,7 +50,6 @@ function Camera(props){
                 <div className="slide-icon" onClick={onSlideIconClick}>
                     <FontAwesomeIcon style={{transform: isSideMenu ? "rotate(180deg)" : "rotate(0deg)"}} icon={faBackward} />
                 </div>
-                sidebar
             </aside>
         </div>
     )

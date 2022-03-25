@@ -2,10 +2,12 @@
 $main-font: 'Montserrat', sans-serif;
 $primary-color: rgb(11, 52, 70);
 $min-width: 600px;
+$nav-height: 60px;
 // $primary-color: rgb(8, 69, 96);
 // $primary-color: #0f044c;
 
 $dtrans: all 0.2s ease;
+$menu-trans: all 0.2s cubic-bezier(0.74, 0.02, 1, 1);
 
 // mixins
 @mixin flex-box ($is-row:true, $jstfy:space-between){
@@ -39,12 +41,17 @@ body{
 button{
   cursor: pointer;
   border: none;
-  border-radius: 10px;
+  border-radius: 7px;
   outline: none;
 }
 
 li{
   list-style: none;
+}
+
+a{
+  color: #fff;
+  text-decoration: none;
 }
 
 

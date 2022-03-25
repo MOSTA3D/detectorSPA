@@ -1,39 +1,21 @@
 import image from "./assets/logo_vector.svg";
 import { useRef, useState } from "react";
 
-// global variables
+import { postData } from "../utils/helper";
 
+// global declarations
 const dErrShdw = "0 0 3px 2px rgb(230 73 53)";
 const nameRegex = /^[a-zA-Z]+$/;
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
 //helper functions
-
 const checkRegex = (e, condition)=>{
     if(condition){
         e.target.style.boxShadow = "none";
     }else{
         e.target.style.boxShadow = dErrShdw;
     }
-}
-
-async function postData(url="", data={}){
-    let response;
-    try{
-        response = await fetch(url, {
-            method: "POST",
-            credentials: "same-origin",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-    }catch(err){
-        console.error("there is an error" + err)
-    }
-
-    return response.json();
 }
 
 function Signup(props){
@@ -77,7 +59,7 @@ function Signup(props){
                 throw token.message;
             }
 
-            document.cookie = `token="${token}"`;
+            document.cookie = `token=${token}`;
             console.log(token);
             setAuthed(true);
         }catch(err){
